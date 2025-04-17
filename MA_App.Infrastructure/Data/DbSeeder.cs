@@ -7,21 +7,23 @@ using System.Threading.Tasks;
 
 namespace MA_App.Infrastructure.Data
 {
-    public class DbSeeder
+    public class DbSeeder(AppDbContext context)
     {
-        private readonly AppDbContext _context;
-
-        public DbSeeder(AppDbContext context)
-        {
-            _context = context;
-        }
+        private readonly AppDbContext _context = context;
 
         public async Task SeedAsync()
         {
             if (!_context.Users.Any())
             {
                 _context.Users.AddRange(
-                    new User { Name = "Admin", Email = "admin@admin.com" }
+                    new User
+                    {
+                        UserName = "admin",
+                        Email = "admin@admin.com",
+                        FirstName = "first name",
+                        LastName = "last name",
+                        Password = "25d55ad283aa400af464c76d713c07ad"
+                    }
                 );
                 await _context.SaveChangesAsync();
             }
