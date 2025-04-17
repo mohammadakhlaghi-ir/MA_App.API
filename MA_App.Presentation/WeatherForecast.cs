@@ -1,4 +1,4 @@
-namespace MA_App.API
+namespace MA_App.Presentation
 {
     public class WeatherForecast
     {

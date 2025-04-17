@@ -1,4 +1,4 @@
-﻿namespace MA_App.Core
+﻿namespace MA_App.Application
 {
     public class Class1
     {
