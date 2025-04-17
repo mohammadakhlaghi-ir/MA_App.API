@@ -28,23 +28,26 @@ namespace MA_App.Domain.Entities
         public string? PhoneNumber { get; set; }
         [StringLength(200)]
         public string? Address { get; set; }
-        public string? Image { get; set; } = "default.jpg";
+        public string? Image { get; set; } = default!;
         [Required]
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; } = DateTime.Now;
+        public DateTime DateOfBirth { get; set; } = default!;
         [Required]
         [DataType(DataType.DateTime)]
-        public DateTime Created { get; set; } = DateTime.Now;
+        public DateTime Created { get; set; } = default!;
         public Guid? Creator { get; set; }
         [Required]
-        public bool IsDeleted { get; set; } = false;
+        public bool IsDeleted { get; set; } = default!;
         [Required]
-        public bool IsLock { get; set; } = false;
+        public bool IsLock { get; set; } = default!;
         [Required]
         [EmailAddress]
         [StringLength(100)]
         public string Email { get; set; } = default!;
+        [DataType(DataType.DateTime)]
         public DateTime? ModifyDate { get; set; }
         public Guid? Modifier { get; set; }
+        [StringLength(200)]
+        public string? Description { get; set; }
     }
 }

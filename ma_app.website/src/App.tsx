@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+type AppInfoDto = {
+  title: string;
+  description: string;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [appInfo, setAppInfo] = useState<AppInfoDto | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    axios.get<AppInfoDto>(`${import.meta.env.VITE_API_BASE_URL}/api/Home/GetAppInfo`)
+      .then(response => {
+        setAppInfo(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching app info:', error);
+        if (error.response) {
+          console.error("Backend responded with:", error.response.data);
+        }
+        setError('Failed to load app info');
+      });
+  }, []);
+  console.log(appInfo)
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>App Info</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {appInfo ? (
+        <div>
+          <p><strong>Name:</strong> {appInfo.title}</p>
+          <p><strong>Description:</strong> {appInfo.description}</p>
+        </div>
+      ) : (
+        !error && <p>Loading app info...</p>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

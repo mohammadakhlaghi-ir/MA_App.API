@@ -22,8 +22,30 @@ namespace MA_App.Infrastructure.Data
                         Email = "admin@admin.com",
                         FirstName = "first name",
                         LastName = "last name",
-                        Password = "25d55ad283aa400af464c76d713c07ad"
+                        Password = "25d55ad283aa400af464c76d713c07ad",
+                        Created = DateTime.Now,
+                        DateOfBirth = DateTime.Now,
+                        Image = "default.jpg",
+                        Description = "admin",
+                        IsLock = false,
+                        IsDeleted = false,
                     }
+                );
+                await _context.SaveChangesAsync();
+            }
+            if (!_context.AppInfos.Any())
+            {
+                _context.AppInfos.AddRange(
+                    new AppInfo
+                    {
+                        Description = "MA_App ",
+                        Created = DateTime.Now,
+                        Favicon = "favicon.ico",
+                        Language = "en",
+                        Logo = "logo.svg",
+                        Title = "MA_App",
+                    }
+
                 );
                 await _context.SaveChangesAsync();
             }

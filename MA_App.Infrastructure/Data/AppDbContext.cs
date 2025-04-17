@@ -11,5 +11,6 @@ namespace MA_App.Infrastructure.Data
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
         public DbSet<User> Users => Set<User>();
+        public DbSet<AppInfo> AppInfos => Set<AppInfo>();
     }
 }
