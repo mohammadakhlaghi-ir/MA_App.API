@@ -39,7 +39,10 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
-
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5024); 
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -49,10 +52,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
-app.UseCors("AllowAll");
+app.UseStaticFiles();
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
