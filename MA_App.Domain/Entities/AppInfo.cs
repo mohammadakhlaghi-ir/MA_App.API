@@ -27,5 +27,7 @@ namespace MA_App.Domain.Entities
         public string Favicon { get; set; } = default!;
         [Required]
         public string Language { get; set; } = default!;
+        [Required]
+        public string Version { get; set; } = default!;
     }
 }

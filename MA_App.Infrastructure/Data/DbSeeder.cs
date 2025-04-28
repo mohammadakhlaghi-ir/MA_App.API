@@ -44,8 +44,8 @@ namespace MA_App.Infrastructure.Data
                         Language = "en",
                         Logo = "logo.svg",
                         Title = "MA_App",
+                        Version = "0.1",
                     }
-
                 );
                 await _context.SaveChangesAsync();
             }

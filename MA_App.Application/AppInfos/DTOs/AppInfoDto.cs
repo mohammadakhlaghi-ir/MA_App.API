@@ -14,6 +14,7 @@ namespace MA_App.Application.AppInfos.DTOs
         public string Logo { get; set; } = default!;
         public string Language { get; set; } = default!;
         public string Created { get; set; } = default!;
+        public string Version { get; set; } = default!;
         public string? ModifyDate { get; set; }
     }
 }
