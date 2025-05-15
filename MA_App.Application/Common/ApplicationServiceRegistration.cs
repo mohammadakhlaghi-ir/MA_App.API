@@ -1,6 +1,9 @@
-﻿using MA_App.Application.AppInfos.Queries;
+﻿using FluentValidation;
+using MA_App.Application.AppInfos.Queries;
+using MA_App.Application.AppInfos.Validators;
 using MA_App.Application.Common.Mappings;
 using MA_App.Application.Users.Queries;
+using MA_App.Application.Users.Validators;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -10,25 +13,25 @@ using System.Threading.Tasks;
 
 namespace MA_App.Application.Common
 {
-    namespace MA_App.Application
+    public static class ApplicationServiceRegistration
     {
-        public static class ApplicationServiceRegistration
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-            {
-                services.AddMediatR(cfg =>
-                    cfg.RegisterServicesFromAssemblyContaining<GetAllUsersQuery>());
+            #region Users
+            services.AddMediatR(cfg =>
+                cfg.RegisterServicesFromAssemblyContaining<GetAllUsersQuery>());
+            services.AddAutoMapper(typeof(UserProfile).Assembly);
+            services.AddValidatorsFromAssemblyContaining<UserDtoValidator>();
+            #endregion
 
-                services.AddMediatR(cfg =>
-                  cfg.RegisterServicesFromAssemblyContaining<GetAppInfoQuery>());
+            #region AppInfo
+            services.AddMediatR(cfg =>
+              cfg.RegisterServicesFromAssemblyContaining<GetAppInfoQuery>());
+            services.AddAutoMapper(typeof(AppInfoProfile).Assembly);
+            services.AddValidatorsFromAssemblyContaining<AppInfoDtoValidator>();
+            #endregion
 
-                services.AddAutoMapper(typeof(UserProfile).Assembly);
-
-                services.AddAutoMapper(typeof(AppInfoProfile).Assembly);
-
-                return services;
-            }
+            return services;
         }
     }
-
 }

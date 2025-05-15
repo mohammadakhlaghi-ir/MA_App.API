@@ -1,6 +1,7 @@
+using FluentValidation.AspNetCore;
 using MA_App.Application.AppInfos;
 using MA_App.Application.AppInfos.Queries;
-using MA_App.Application.Common.MA_App.Application;
+using MA_App.Application.Common;
 using MA_App.Application.Common.Mappings;
 using MA_App.Application.Users.Queries;
 using MA_App.Domain.Entities;
@@ -39,7 +40,7 @@ try
 
     builder.Services.AddApplicationServices();
     builder.Services.AddInfrastructureServices();
-
+    builder.Services.AddFluentValidationAutoValidation();
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.AddScoped<DbSeeder>();
