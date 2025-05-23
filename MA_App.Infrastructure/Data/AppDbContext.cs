@@ -12,5 +12,10 @@ namespace MA_App.Infrastructure.Data
     {
         public DbSet<User> Users => Set<User>();
         public DbSet<AppInfo> AppInfos => Set<AppInfo>();
+        public DbSet<Layout> Layouts => Set<Layout>();
+        public DbSet<SectionLayoutType> SectionLayoutTypes => Set<SectionLayoutType>();
+        public DbSet<SectionLayout> SectionLayouts => Set<SectionLayout>();
+        public DbSet<ItemLayoutType> ItemLayoutTypes => Set<ItemLayoutType>();
+        public DbSet<SectionItemLayout> SectionItemLayouts => Set<SectionItemLayout>();
     }
 }

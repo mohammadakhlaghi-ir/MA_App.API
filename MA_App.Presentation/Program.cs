@@ -1,15 +1,7 @@
 using FluentValidation.AspNetCore;
-using MA_App.Application.AppInfos;
-using MA_App.Application.AppInfos.Queries;
 using MA_App.Application.Common;
-using MA_App.Application.Common.Mappings;
-using MA_App.Application.Users.Queries;
-using MA_App.Domain.Entities;
-using MA_App.Domain.Interfaces;
 using MA_App.Infrastructure.Common;
 using MA_App.Infrastructure.Data;
-using MA_App.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System.Reflection;
